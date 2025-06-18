@@ -1,59 +1,80 @@
 package ru.netology.statistic.HomeWorkJavaMvnOopEngineering.service;
 
 public class Radio {
-    private int station;
-    private int volume;
+    private int currentRadioStation;
+    private int currentSoundVolume;
 
-    public void setStation(int station) {
-        if (station < 0) {
+    public void setStation(int newStation) {
+        if (newStation < 0) {
             return;
+        } else {
+            if (newStation > 9) {
+                return;
+            } else {
+                this.currentRadioStation = newStation;
+            }
         }
-        if (station > 9) {
-            return;
-        }
-        this.station = station;
     }
+
     public int getStation() {
-        return station;
+        return this.currentRadioStation;
     }
+
     public void nextStation() {
-        if (station != 9) {
-            station++;
+        if (this.currentRadioStation == 9) {
+            this.currentRadioStation = 0;
         } else {
-            station = 0;
+            if (this.currentRadioStation != 9) {
+                this.currentRadioStation = this.currentRadioStation + 1;
+            }
         }
     }
+
     public void prevStation() {
-        if (station != 0) {
-            station = station - 1;
+        if (this.currentRadioStation == 0) {
+            this.currentRadioStation = 9;
         } else {
-            station = 9;
+            if (this.currentRadioStation != 0) {
+                this.currentRadioStation = this.currentRadioStation - 1;
+            }
         }
     }
+
+    public void setVolume(int newVolume) {
+        if (newVolume < 0) {
+            this.currentSoundVolume = 0;
+        } else {
+            if (newVolume > 100) {
+                this.currentSoundVolume = 100;
+            } else {
+                if (newVolume >= 0 && newVolume <= 100) {
+                    this.currentSoundVolume = newVolume;
+                }
+            }
+        }
+    }
+
     public int getVolume() {
-        return volume;
+        return this.currentSoundVolume;
     }
-    public void setVolume(int volume) {
-        if (volume >= 100) {
-            return;
-        }
-        if (volume <= 0) {
-            return;
-        }
-        this.volume = volume;
-    }
+
     public void increaseVolume() {
-        if (volume > 0) {
-            volume++;
+        if (this.currentSoundVolume < 100) {
+            this.currentSoundVolume = this.currentSoundVolume + 1;
         } else {
-            volume = 100;
+            if (this.currentSoundVolume >= 100) {
+                this.currentSoundVolume = 100;
+            }
         }
     }
+
     public void decreaseVolume() {
-        if (volume != 0) {
-            volume = volume - 1;
+        if (this.currentSoundVolume > 0) {
+            this.currentSoundVolume = this.currentSoundVolume - 1;
         } else {
-            volume = 0;
+            if (this.currentSoundVolume <= 0) {
+                this.currentSoundVolume = 0;
+            }
         }
     }
 }
