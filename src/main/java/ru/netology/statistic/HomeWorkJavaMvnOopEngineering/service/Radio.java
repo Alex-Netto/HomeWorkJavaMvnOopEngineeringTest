@@ -5,76 +5,55 @@ public class Radio {
     private int currentSoundVolume;
 
     public void setStation(int newStation) {
-        if (newStation < 0) {
+        if (newStation < 0 || newStation > 9) {
             return;
-        } else {
-            if (newStation > 9) {
-                return;
-            } else {
-                this.currentRadioStation = newStation;
-            }
         }
+        this.currentRadioStation = newStation;
     }
 
     public int getStation() {
-        return this.currentRadioStation;
+        return currentRadioStation;
     }
 
     public void nextStation() {
-        if (this.currentRadioStation == 9) {
-            this.currentRadioStation = 0;
+        if (currentRadioStation == 9) {
+            currentRadioStation = 0;
         } else {
-            if (this.currentRadioStation != 9) {
-                this.currentRadioStation = this.currentRadioStation + 1;
-            }
+            currentRadioStation++;
         }
     }
 
     public void prevStation() {
-        if (this.currentRadioStation == 0) {
-            this.currentRadioStation = 9;
+        if (currentRadioStation == 0) {
+            currentRadioStation = 9;
         } else {
-            if (this.currentRadioStation != 0) {
-                this.currentRadioStation = this.currentRadioStation - 1;
-            }
+            currentRadioStation--;
         }
     }
 
     public void setVolume(int newVolume) {
         if (newVolume < 0) {
-            this.currentSoundVolume = 0;
+            currentSoundVolume = 0;
+        } else if (newVolume > 100) {
+            currentSoundVolume = 100;
         } else {
-            if (newVolume > 100) {
-                this.currentSoundVolume = 100;
-            } else {
-                if (newVolume >= 0 && newVolume <= 100) {
-                    this.currentSoundVolume = newVolume;
-                }
-            }
+            currentSoundVolume = newVolume;
         }
     }
 
     public int getVolume() {
-        return this.currentSoundVolume;
+        return currentSoundVolume;
     }
 
     public void increaseVolume() {
-        if (this.currentSoundVolume < 100) {
-            this.currentSoundVolume = this.currentSoundVolume + 1;
-        } else {
-            if (this.currentSoundVolume >= 100) {
-                this.currentSoundVolume = 100;
-            }
+        if (currentSoundVolume < 100) {
+            currentSoundVolume++;
         }
     }
 
     public void decreaseVolume() {
-        if (this.currentSoundVolume > 0) {
-            this.currentSoundVolume = this.currentSoundVolume - 1;
-        } else {
-            if (this.currentSoundVolume <= 0) {
-                this.currentSoundVolume = 0;
-            }
+        if (currentSoundVolume > 0) {
+            currentSoundVolume--;
         }
     }
 }
